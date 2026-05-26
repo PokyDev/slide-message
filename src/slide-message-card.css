@@ -1,0 +1,279 @@
+/* ============================================================
+   slide-message.css
+   A lightweight React notification system with slide animations
+   ============================================================ */
+
+/* Positioning — uses custom properties injected via JS */
+.slide-message {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.slide-message--top-left {
+  top: var(--sm-offset-y);
+  left: var(--sm-offset-x);
+}
+
+.slide-message--top-right {
+  top: var(--sm-offset-y);
+  right: var(--sm-offset-x);
+}
+
+.slide-message--bottom-left {
+  bottom: var(--sm-offset-y);
+  left: var(--sm-offset-x);
+}
+
+.slide-message--bottom-right {
+  bottom: var(--sm-offset-y);
+  right: var(--sm-offset-x);
+}
+
+/* --- Message card --- */
+.slide-message__card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sm-gap, 12px);
+  padding: var(--sm-padding-y, 16px) var(--sm-padding-x, 20px);
+  min-width: 260px;
+  max-width: 340px;
+  border-radius: var(--sm-radius, 6px);
+  border: 1px solid var(--sm-border-default, #3D3D3D);
+  background-color: var(--sm-bg-elevated, #222222);
+  box-shadow: var(--sm-shadow, 0 4px 12px rgba(0, 0, 0, 0.4));
+  pointer-events: auto;
+  will-change: opacity, transform;
+  user-select: none;
+}
+
+/* --- Message icon --- */
+.slide-message__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--sm-radius-sm, 4px);
+  margin-top: 1px;
+}
+
+/* --- Text body --- */
+.slide-message__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sm-body-gap, 4px);
+  min-width: 0;
+}
+
+.slide-message__label {
+  font-family: var(--sm-font, system-ui, sans-serif);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sm-label-color, #9A9A9A);
+  line-height: 1.4;
+}
+
+.slide-message__text {
+  font-family: var(--sm-font, system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--sm-text-color, #F0F0F0);
+  line-height: 1.5;
+}
+
+/* --- Duration progress bar --- */
+.slide-message__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  border-radius: 0 0 var(--sm-radius, 6px) var(--sm-radius, 6px);
+  overflow: hidden;
+  background-color: var(--sm-progress-bg, #2E2E2E);
+}
+
+.slide-message__progress-bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  animation: sm-progress linear forwards;
+}
+
+/* ============================================================
+   Message variants
+   ============================================================ */
+
+/* emptyState — "Funcionalidad en Desarrollo" */
+.slide-message--empty-state .slide-message__icon {
+  background-color: rgba(212, 175, 55, 0.12);
+  color: var(--sm-accent-color, #D4AF37);
+}
+
+.slide-message--empty-state .slide-message__label {
+  color: var(--sm-accent-color, #D4AF37);
+}
+
+.slide-message--empty-state .slide-message__progress-bar {
+  background-color: var(--sm-accent-color, #D4AF37);
+}
+
+/* ============================================================
+   Keyframe animations — enter and exit by position
+   ============================================================ */
+
+/* top-left: enters from the left, exits to the left */
+@keyframes sm-enter-top-left {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes sm-exit-top-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+
+/* top-right: enters from the right, exits to the right */
+@keyframes sm-enter-top-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes sm-exit-top-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+/* bottom-left: enters from the left, exits to the left */
+@keyframes sm-enter-bottom-left {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes sm-exit-bottom-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+
+/* bottom-right: enters from the right, exits to the right */
+@keyframes sm-enter-bottom-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes sm-exit-bottom-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+/* Progress bar */
+@keyframes sm-progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* ============================================================
+   Animation state classes — applied via JS
+   ============================================================ */
+
+/* Entering state */
+.slide-message--entering.slide-message--top-left .slide-message__card {
+  animation: sm-enter-top-left 250ms var(--sm-ease, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+.slide-message--entering.slide-message--top-right .slide-message__card {
+  animation: sm-enter-top-right 250ms var(--sm-ease, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+.slide-message--entering.slide-message--bottom-left .slide-message__card {
+  animation: sm-enter-bottom-left 250ms var(--sm-ease, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+.slide-message--entering.slide-message--bottom-right .slide-message__card {
+  animation: sm-enter-bottom-right 250ms var(--sm-ease, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+/* Exiting state */
+.slide-message--exiting.slide-message--top-left .slide-message__card {
+  animation: sm-exit-top-left 200ms ease-in forwards;
+}
+
+.slide-message--exiting.slide-message--top-right .slide-message__card {
+  animation: sm-exit-top-right 200ms ease-in forwards;
+}
+
+.slide-message--exiting.slide-message--bottom-left .slide-message__card {
+  animation: sm-exit-bottom-left 200ms ease-in forwards;
+}
+
+.slide-message--exiting.slide-message--bottom-right .slide-message__card {
+  animation: sm-exit-bottom-right 200ms ease-in forwards;
+}
+
+/* Respects prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .slide-message__card {
+    animation: none !important;
+  }
+
+  .slide-message--exiting .slide-message__card {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "slide-message",
+  "version": "1.0.0",
+  "description": "A lightweight React notification system with slide animations, variant support, and themeable CSS custom properties.",
+  "type": "module",
+  "main": "./dist/slide-message.cjs",
+  "module": "./dist/slide-message.js",
+  "exports": {
+    ".": {
+      "import": "./dist/slide-message.js",
+      "require": "./dist/slide-message.cjs"
+    },
+    "./dist/slide-message.css": "./dist/slide-message.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "vite": "^7.0.0"
+  },
+  "keywords": [
+    "react",
+    "notification",
+    "toast",
+    "slide",
+    "animation",
+    "ui",
+    "component"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TU_USUARIO/slide-message.git"
+  },
+  "homepage": "https://github.com/TU_USUARIO/slide-message#readme",
+  "bugs": {
+    "url": "https://github.com/TU_USUARIO/slide-message/issues"
+  }
+}
