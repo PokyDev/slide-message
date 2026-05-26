@@ -43,10 +43,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TU_USUARIO/slide-message.git"
+    "url": "https://github.com/PokyDev/slide-message.git"
   },
-  "homepage": "https://github.com/TU_USUARIO/slide-message#readme",
+  "homepage": "https://github.com/PokyDev/slide-message#readme",
   "bugs": {
-    "url": "https://github.com/TU_USUARIO/slide-message/issues"
+    "url": "https://github.com/PokyDev/slide-message/issues"
   }
 }
